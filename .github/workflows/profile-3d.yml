@@ -1,28 +1,35 @@
-name: GitHub-Profile-3D-Contrib
+name: Profile 3D Contributions
+# GitHubプロフィールの3D貢献グラフを自動生成・更新するワークフロー
 
 on:
-  schedule: # 03:00 JST == 18:00 UTC
-    - cron: "0 18 * * *"
+  schedule:
+    # 毎日0時（JST）に実行（UTC15時＝JST0時）
+    - cron: "0 15 * * *"
+  # 手動実行（Actionsタブからボタンでも実行できる）
   workflow_dispatch:
-
-permissions:
-  contents: write
 
 jobs:
   build:
+    # GitHubが提供するUbuntu環境で実行
     runs-on: ubuntu-latest
-    name: generate-github-profile-3d-contrib
     steps:
-      - uses: actions/checkout@v5
-      - uses: yoshi389111/github-profile-3d-contrib@latest
+      # リポジトリを取得（ワークフロー内でリポジトリのファイルを操作できるようにする）
+      - uses: actions/checkout@v4
+
+      # 3D貢献グラフを生成
+      - uses: yoshi389111/github-profile-3d-contrib@0.7.1
         env:
-          GITHUB_TOKEN: ${{ secrets.MY_PERSONAL_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          # 実行対象のGitHubユーザー名。自動でリポジトリ所有者を取得
           USERNAME: ${{ github.repository_owner }}
+
+      # 生成結果をコミット＆プッシュ
       - name: Commit & Push
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+          # GitHub公式の自動実行ユーザー「github-actions[bot]」を指定
+          git config user.name github-actions[bot]
+          # 「41898282+」はGitHub Actions Botの一意のユーザーID
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add -A .
-          if git commit -m "generated"; then
-            git push
-          fi
+          git commit -m "update 3d contributions" || echo "no changes"
+          git push
