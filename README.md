@@ -1,4 +1,4 @@
-![](https://komarev.com/ghpvc/?username=ifuha&color=green)
+
 # About
 
 kadokawaドワンゴ情報工科学院2年生 井藤珀(ifuji haku)
@@ -14,3 +14,5 @@ web開発を主にしています
 
 
 ![](./profile-3d-contrib/profile-night-green.svg)
+
+![](https://komarev.com/ghpvc/?username=ifuha&color=green)
