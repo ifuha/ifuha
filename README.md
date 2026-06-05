@@ -6,7 +6,7 @@ web開発を主にしています
 
 # skills🔨
 
-[![My Skills](https://skillicons.dev/icons?i=cs,js,ts,tailwind,next,dotnet&theme=light)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=cs,js,ts,tailwind,next,dotnet&theme=dark)](https://skillicons.dev)
 
 ## Active📈
 
